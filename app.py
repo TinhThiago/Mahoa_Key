@@ -12,7 +12,7 @@ cipher_suite1 = Fernet(key1)
 
 # Khóa và IV cho lớp mã hóa thứ hai (AES)
 key2 = os.urandom(32)  # 256-bit key cho AES
-iv = os.urandom(16)    # 128-bit IV cho chế độ CBC của AES
+iv = os.urandom(32)    # 128-bit IV cho chế độ CBC của AES
 
 def aes_encrypt(data, key, iv):
     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
