@@ -18,7 +18,7 @@ def aes_encrypt(data, key, iv):
     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
     encryptor = cipher.encryptor()
     # Dữ liệu cần có độ dài bội số của 16 cho AES-CBC, do đó cần padding
-    padded_data = data + b" " * (16 - len(data) % 16)  # Thêm padding đơn giản
+    padded_data = data + b" " * (32 - len(data) % 32)  # Thêm padding đơn giản
     return encryptor.update(padded_data) + encryptor.finalize()
 
 def aes_decrypt(data, key, iv):
