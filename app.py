@@ -12,13 +12,13 @@ cipher_suite1 = Fernet(key1)
 
 # Khóa và IV cho lớp mã hóa thứ hai (AES)
 key2 = os.urandom(32)  # 256-bit key cho AES
-iv = os.urandom(32)    # 128-bit IV cho chế độ CBC của AES
+iv = os.urandom(16)    # 128-bit IV cho chế độ CBC của AES
 
 def aes_encrypt(data, key, iv):
     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
     encryptor = cipher.encryptor()
     # Dữ liệu cần có độ dài bội số của 16 cho AES-CBC, do đó cần padding
-    padded_data = data + b" " * (32 - len(data) % 32)  # Thêm padding đơn giản
+    padded_data = data + b" " * (16 - len(data) % 16)  # Thêm padding đơn giản
     return encryptor.update(padded_data) + encryptor.finalize()
 
 def aes_decrypt(data, key, iv):
